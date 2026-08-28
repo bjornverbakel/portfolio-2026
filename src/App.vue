@@ -9,6 +9,9 @@ import {
 } from "@tresjs/post-processing";
 import { GLTFModel } from "@tresjs/cientos";
 import IconMotion from "./components/IconMotion.vue";
+import ControlPanel from "./components/ControlPanel.vue";
+import SpeakerPanel from "./components/SpeakerPanel.vue";
+import StatusPanel from "./components/StatusPanel.vue";
 import {
   AmbientLight,
   DirectionalLight,
@@ -143,95 +146,9 @@ const hoveredIcon = ref(null);
             </TresCanvas>
           </div>
         </div>
-        <div class="speaker-panel">
-          <div class="speaker-vent">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div class="speaker-label select-none">
-            <div class="flex flex-col items-end leading-1">
-              <span>MADE WITH</span>
-              <span class="text-3xl">CSS</span>
-            </div>
-
-            <div class="label-lines">
-              <span class="red"></span>
-              <span class="yellow"></span>
-              <span class="blue"></span>
-            </div>
-          </div>
-          <div class="speaker-grille"></div>
-          <div class="mic">
-            <div class="flex flex-col justify-center items-center">
-              <div class="led blue"></div>
-              <p class="emboss-txt select-none">MIC</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="button-panel sticker-txt">
-          <div class="button-ridge" aria-hidden="true"></div>
-          <div class="d-pad">
-            <div class="d-pad-face">
-              <button
-                class="d-pad-direction d-pad-top"
-                type="button"
-                aria-label="Up"
-              ></button>
-              <button
-                class="d-pad-direction d-pad-right"
-                type="button"
-                aria-label="Right"
-              ></button>
-              <button
-                class="d-pad-direction d-pad-bottom"
-                type="button"
-                aria-label="Down"
-              ></button>
-              <button
-                class="d-pad-direction d-pad-left"
-                type="button"
-                aria-label="Left"
-              ></button>
-              <button
-                class="d-pad-center"
-                type="button"
-                aria-label="Confirm"
-              ></button>
-            </div>
-          </div>
-          <div class="console-buttons" aria-hidden="true">
-            <button class="console-button" type="button">SELECT</button>
-            <button class="console-button" type="button">START</button>
-          </div>
-        </div>
-        <div class="decorative-panel">
-          <div class="decorative-vent" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div
-            class="battery-indicator"
-            role="img"
-            aria-label="Battery indicator"
-          >
-            <div class="led green" aria-hidden="true"></div>
-            <p class="emboss-txt select-none">BAT</p>
-          </div>
-          <button class="power-button" type="button" aria-label="Power">
-            <span aria-hidden="true"></span>
-          </button>
-        </div>
+        <SpeakerPanel />
+        <StatusPanel />
+        <ControlPanel />
       </div>
     </section>
   </main>
