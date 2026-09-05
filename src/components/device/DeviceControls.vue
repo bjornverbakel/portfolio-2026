@@ -21,7 +21,7 @@
       <button
         v-for="label in ['Select', 'Start']"
         :key="label"
-        class="console-button"
+        class="console-button select-none"
         type="button"
       >
         {{ label }}
@@ -32,12 +32,16 @@
 
 <style>
 .button-panel {
+  --d-pad-size: clamp(104px, 13vw, 140px);
+  --console-button-width: 72px;
+  --console-panel-gap: 16px;
   position: relative;
   z-index: 1;
   order: 2;
   display: flex;
+  max-height: 150px;
   justify-content: space-between;
-  gap: 16px;
+  gap: var(--console-panel-gap);
   margin-bottom: 12px;
   padding: 12px;
   border-top: 2px solid #111312;
@@ -49,9 +53,10 @@
     inset -3px -4px 7px #00000099;
 }
 .d-pad {
+  align-self: center;
   position: relative;
   flex: 0 0 auto;
-  width: clamp(104px, 13vw, 140px);
+  width: var(--d-pad-size);
   aspect-ratio: 1;
   border: 2px solid #070808;
   border-radius: 50%;
@@ -186,7 +191,7 @@
 }
 .console-button {
   position: relative;
-  width: 72px;
+  width: var(--console-button-width);
   border-radius: 8px;
   font-size: 14px;
   color: #939393;
@@ -208,13 +213,11 @@
 
 @media (max-width: 800px) {
   .button-panel {
+    --d-pad-size: clamp(96px, 30vw, 124px);
+    --console-button-width: clamp(54px, 19vw, 72px);
+    --console-panel-gap: clamp(8px, 3vw, 16px);
     order: 3;
-    gap: clamp(8px, 3vw, 16px);
     padding: clamp(9px, 3vw, 12px);
-  }
-
-  .d-pad {
-    width: clamp(96px, 30vw, 124px);
   }
 
   .console-buttons {
@@ -224,8 +227,25 @@
   }
 
   .console-button {
-    width: clamp(54px, 19vw, 72px);
     height: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .button-panel {
+    --console-button-width: clamp(48px, 19vw, 60px);
+    flex-grow: 1;
+    justify-content: space-evenly;
+  }
+
+  .console-buttons {
+    gap: clamp(4px, 1.5vw, 8px);
+    flex-direction: row;
+  }
+
+  .console-button {
+    height: 100%;
+    font-size: clamp(10px, 2.5vw, 14px);
   }
 }
 </style>
