@@ -1,28 +1,25 @@
 <script setup>
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { Volume2 } from "@lucide/vue";
 
-const volume = ref(68);
-const volumeWheelTextureOffset = computed(() => volume.value * 0.7);
+const volumeWheelTextureOffset = ref(48);
 const isAdjustingVolume = ref(false);
-const volumeDragStart = ref({ value: 0, y: 0 });
-
-function updateVolume(value) {
-  volume.value = Math.min(100, Math.max(0, value));
-}
+const volumeDragStart = ref({ offset: 0, y: 0 });
 
 function startVolumeAdjust(event) {
   isAdjustingVolume.value = true;
-  volumeDragStart.value = { value: volume.value, y: event.clientY };
+  volumeDragStart.value = {
+    offset: volumeWheelTextureOffset.value,
+    y: event.clientY,
+  };
   event.currentTarget.setPointerCapture(event.pointerId);
 }
 
 function adjustVolume(event) {
   if (!isAdjustingVolume.value) return;
-  updateVolume(
-    volumeDragStart.value.value +
-      (event.clientY - volumeDragStart.value.y) * 1.5,
-  );
+  volumeWheelTextureOffset.value =
+    volumeDragStart.value.offset +
+    (event.clientY - volumeDragStart.value.y) * 1.5;
 }
 
 function endVolumeAdjust(event) {
